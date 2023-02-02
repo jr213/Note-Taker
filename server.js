@@ -62,15 +62,18 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const notes = require('./db/db.json');
+const cors = require('cors')
 
 //create instances of express and our port for heroku
 const app = express();
 const PORT = process.env.PORT || 3001
 
+
 // middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors())
 
 // Get route for api/notes to read from our database
 app.get('/api/notes', (req, res) => {
